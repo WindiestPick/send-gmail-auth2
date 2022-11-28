@@ -8,15 +8,15 @@
 Use os comandos:
 
         npm install express
-
+>
         npm install body-parser
-
+>
         npm install nodemailer
-
+>
         npm install googleapis
-
+>
         npm install cors
-
+>
         npm install http-server
 
 Ou o comando completo:
@@ -33,7 +33,7 @@ Ou o comando completo:
 
     >Após entrar com sua conta no "Google Cloud Platform" acesse o "Google Cloud Console" clicando em um dos botões mostrados na imagem a baixo
 
-    <img src="./assets/img/googleCloudConsole.png"></img>
+    <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/GoogleCloudConsole.png"></img>
 
 2. ### Criar um novo projeto:
   
