@@ -5,14 +5,33 @@
 
 ## Dependencias:
 
-` npm install express `
+Use os comandos:
 
-` npm install body-parser`
+> ` npm install express `
 
-` npm install nodemailer `
+> ` npm install body-parser`
 
-` npm install googleapis `
+> ` npm install nodemailer `
 
-` npm install cors `
+> ` npm install googleapis `
 
-` npm install http-server `
+> ` npm install cors `
+
+> ` npm install http-server `
+
+Ou o comando completo:
+
+>` npm install express body-parser nodemailer googleapis cors http-server `
+
+## Passo a Passo:
+
+- Criar uma conta no Google Cloud Platform
+
+        Primeiramente é necessario cirar uma conta no "Google Cloud Platform" e configura-la para ter acesso a verificação do google (o Auth2.0). Link: https://cloud.google.com
+
+    <img src="./assets/img/googleCloudLogin1.png"></img>
+
+        Após entrar com sua conta no "Google Cloud Platform" acesse o "Google Cloud Console" clicando em um dos botões mostrados na imagem a baixo
+    <img src="./assets/img/googleCloudConsole.png"></img>
+- 
+  
