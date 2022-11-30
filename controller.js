@@ -11,12 +11,14 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+
 app.get('/',function(req,res){
     res.send({
-    message:'Default route in email tutorial project'
+        message:'Rota Padrão'
     })
 });
 
+/*
 const myOAuth2Client = new OAuth2(
     "680829537103-822mkj8ogtt094q786bsdbfahcfbs6c5.apps.googleusercontent.com",
     "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",
@@ -60,6 +62,7 @@ app.post('/sendemail',function(req,res){
         }
     })
 })
+*/
 
 app.listen(PORT, function (req, res) {
     console.log(`Listening on port ${PORT}`);

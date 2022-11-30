@@ -3,36 +3,16 @@
 > Criação de um sistema simples para envio de 
 > e-mail usando o auth2.0 da Google.
 
-## Dependencias:
-
-Use os comandos:
-
-        npm install express
->
-        npm install body-parser
->
-        npm install nodemailer
->
-        npm install googleapis
->
-        npm install cors
->
-        npm install http-server
-
-Ou o comando completo:
-
-        npm install express body-parser nodemailer googleapis cors http-server
-
 ## Passo a Passo:
 
 1. ### Criar uma conta no Google Cloud Platform:
 
-    >Primeiramente é necessario cirar uma conta no "Google Cloud Platform" e configura-la para ter acesso a verificação do google (o Auth2.0). 
+    > Primeiramente é necessario cirar uma conta no "Google Cloud Platform" e configura-la para ter acesso a verificação do google (o Auth2.0). 
     >> Link: https://cloud.google.com
 
     <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/GoogleCloudLogin1.png"></img>
 
-    >Após entrar com sua conta no "Google Cloud Platform" acesse o "Google Cloud Console" clicando em um dos botões mostrados na imagem a baixo:
+    > Após entrar com sua conta no "Google Cloud Platform" acesse o "Google Cloud Console" clicando em um dos botões mostrados na imagem a baixo:
 
     <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/GoogleCloudConsole.png"></img>
 
@@ -58,7 +38,7 @@ Ou o comando completo:
 
     <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/GoogleCloudConfig2.png"></img>
 
-    > Ao concluir essa etapa abrirá uma nova janela para adicionar algumas configurações do app, é importante que você adicione um nome para o app, o "user suport e-mail", e o e-mail de contato do desenvolvedor (As demais configurações são opcionais), ao preenceher os campos clik em "SAVE AND CONTINUE"
+    > Ao concluir essa etapa abrirá uma nova janela para adicionar algumas configurações do app, é importante que você adicione um nome para o app, o "user suport e-mail", e o e-mail de contato do desenvolvedor (As demais configurações são opcionais), ao preenceher os campos clique em "SAVE AND CONTINUE"
 
     <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/GoogleCloudConfig3.png"></img>
 
@@ -105,7 +85,7 @@ Ou o comando completo:
 
     <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/GoogleDevelopers2.png"></img>
 
-    > Em seguida preencha o campo "Input your won scopes" com o a URL do e-mail google e clik em "Authorize APIs".
+    > Em seguida preencha o campo "Input your won scopes" com o a URL do e-mail google e clique em "Authorize APIs".
                 
         https://mail.google.com/
 
@@ -120,3 +100,63 @@ Ou o comando completo:
     > Ao retornar para o site, você receberá um código de autorização, precione o botão "Exchenge authorization code for tokens" ele irá gerar dois tokens, guarde o "Refresh token" que será usado no código node.
 
     <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/GoogleDevelopers6.png"></img>
+
+5. ### Detalhamento do Código:
+    
+    > O código em sí é bem simples, primeiramente adicione todas as dependencias do projeto.
+
+Dependencias:
+
+        npm install express
+>
+        npm install body-parser
+>
+        npm install nodemailer
+>
+        npm install googleapis
+>
+        npm install cors
+>
+        npm install -g http-server
+>
+        npm install -g nodemon
+
+Ou o comando completo:
+
+        npm install express body-parser nodemailer googleapis cors http-server
+
+Codigo JS:
+>
+    >Importe elas para dentro de um arquivo js (por padrão utilize o nome do arquivo como Controller.js):
+
+        const express = require('express');
+        const bodyParser = require('body-parser');
+        const nodemailer = require('nodemailer');
+        const { google } = require("googleapis");
+        const cors = require('cors');
+        const OAuth2 = google.auth.OAuth2;
+>   
+    > Crie duas constantes uma para definir a porta utilizada para requisições e a outra para o express.
+
+        const PORT = process.env.PORT || 3000;
+        const app = express();
+>
+    > Já com o app criado você vai ativar a função "cors" e "bodyParser" (o cors é para paginas web, não é necessário para aplicativos android ou desktop).
+
+        app.use(bodyParser.json());
+        app.use(cors());
+
+> 
+    > Em seguida vamos criar uma rota padrão só para testar o funcionamento da aplicação.
+
+        app.get('/',function(req,res){
+                res.send({
+                        message:'Rota Padrão'
+                })
+        });
+>
+    > E para ativar de fato a aplicação criaremos um "listen" que será responsável por receber as requisições feitas a página.
+
+        app.listen(PORT, function (req, res) {
+                console.log(`Observando a porta ${PORT}`);
+        })
