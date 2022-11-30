@@ -126,8 +126,8 @@ Ou o comando completo:
         npm install express body-parser nodemailer googleapis cors http-server
 
 Codigo JS:
->
-    >Importe elas para dentro de um arquivo js (por padrão utilize o nome do arquivo como Controller.js):
+
+>Importe elas para dentro de um arquivo js (por padrão utilize o nome do arquivo como Controller.js):
 
         const express = require('express');
         const bodyParser = require('body-parser');
@@ -135,28 +135,32 @@ Codigo JS:
         const { google } = require("googleapis");
         const cors = require('cors');
         const OAuth2 = google.auth.OAuth2;
->   
-    > Crie duas constantes uma para definir a porta utilizada para requisições e a outra para o express.
+
+> Crie duas constantes uma para definir a porta utilizada para requisições e a outra para o express.
 
         const PORT = process.env.PORT || 3000;
         const app = express();
->
-    > Já com o app criado você vai ativar a função "cors" e "bodyParser" (o cors é para paginas web, não é necessário para aplicativos android ou desktop).
+
+> Já com o app criado você vai ativar a função "cors" e "bodyParser" (o cors é para paginas web, não é necessário para aplicativos android ou desktop).
 
         app.use(bodyParser.json());
         app.use(cors());
 
-> 
-    > Em seguida vamos criar uma rota padrão só para testar o funcionamento da aplicação.
+
+> Em seguida vamos criar uma rota padrão só para testar o funcionamento da aplicação.
 
         app.get('/',function(req,res){
                 res.send({
                         message:'Rota Padrão'
                 })
         });
->
-    > E para ativar de fato a aplicação criaremos um "listen" que será responsável por receber as requisições feitas a página.
+
+> E para ativar de fato a aplicação criaremos um "listen" que será responsável por receber as requisições feitas a página.
 
         app.listen(PORT, function (req, res) {
                 console.log(`Observando a porta ${PORT}`);
         })
+
+> Com isso já podemos testar se está tudo certo com o nosso controller, digite o comando a baxo em um "prompt" que esteja no diretório do projeto.
+        
+        nodemon controller.js
