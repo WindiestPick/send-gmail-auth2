@@ -116,14 +116,19 @@ Dependencias:
         npm install googleapis
 >
         npm install cors
+
+Ou o comando completo:
+
+        npm install express body-parser nodemailer googleapis cors
+
+
+Instale tambem as ferramentas de execução.
+
 >
         npm install -g http-server
 >
         npm install -g nodemon
 
-Ou o comando completo:
-
-        npm install express body-parser nodemailer googleapis cors http-server
 
 Codigo JS:
 
@@ -164,3 +169,4 @@ Codigo JS:
 > Com isso já podemos testar se está tudo certo com o nosso controller, digite o comando a baxo em um "prompt" que esteja no diretório do projeto.
         
         nodemon controller.js
+
