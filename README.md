@@ -122,7 +122,7 @@ Ou o comando completo:
         npm install express body-parser nodemailer googleapis cors
 
 
-Instale tambem as ferramentas de execução.
+Instale tambêm as ferramentas de execução.
 
 >
         npm install -g http-server
@@ -169,4 +169,6 @@ Codigo JS:
 > Com isso já podemos testar se está tudo certo com o nosso controller, digite o comando a baxo em um "prompt" que esteja no diretório do projeto.
         
         nodemon controller.js
+
+<img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/CodeTesting1.png"></img>
 
