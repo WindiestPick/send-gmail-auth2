@@ -212,7 +212,7 @@ Codigo JS:
                         to: req.body.email, 
                         subject: 'Titulo', 
                         html: '<p> Mensagens </p>'
-        }
+                }
                 transport.sendMail(mailOptions,function(err,result){
                         if(err){
                                 res.send({
