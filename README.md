@@ -172,3 +172,112 @@ Codigo JS:
 
 <img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/CodeTesting1.png"></img>
 
+> Com o nodemon funcionando podemos começar a configurar as verificações de Auth2, primeiro crie o cliente Auth, criando um objeto OAuth2.
+
+        const auth2Client = new OAuth2(
+                "Adicione o seu Client ID",
+                "Adicione o seu Client Secret",
+                "https://developers.google.com/oauthplayground"
+        );
+
+> Em seguida definiremos um validador com as credenciais que foram geradas no Google Playground.
+
+        Auth2Client.setCredentials({
+                refresh_token:"Seu Refresh Token"
+        });
+
+> E então criamos uma variável para receber o token de acesso do Google Playground.
+
+        const accessToken = auth2Client.getAccessToken()
+
+> Com o Aceess Token em mãos podemos prosseguir pra proxima etapa, definir quem vai transportar o nosse e-mail, no caso o Google.
+
+        const transport = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                        type: "OAuth2",
+                        user: "e-mail cadastrado no google playground",
+                        clientId: "Seu Client ID",
+                        clientSecret: "Seu Client Secret",
+                        refreshToken: "Seu Refrash Token",
+                        accessToken: accessToken
+                }
+        });
+
+> Execultando todas as etapas até aqui, finalmente podemos criar a pagina de requisição para em fim enviar os e-mails, atravez de um app.post() crie euma função pra enviar as mensagens.
+
+        app.post('/sendemail',function(req,res){
+                const mailOptions = {
+                        from: 'e-mail cadastrado no google playground',
+                        to: req.body.email, 
+                        subject: 'Titulo', 
+                        html: '<p> Mensagens </p>'
+        }
+                transport.sendMail(mailOptions,function(err,result){
+                        if(err){
+                                res.send({
+                                        message:err
+                                })
+                        }else{
+                                transport.close();
+                                res.send({
+                                        message:'E-mail enviado olhe sua caixa de entrada'
+                                })
+                        }
+                })
+        })
+
+> Agora podemos execultar o nodemon para habilitar a página de requisisção e, para enviar um e-mail de fato iremos fazer um fetch passando os parâmetros para a página. Pra isso criei um código simples html apenas como exemplo.
+
+        <!DOCTYPE html>
+        <html>
+        <header>
+        <title>google img</title>
+        <script src="./Index.js"></script>
+        </header>
+
+        <body>
+        <label for="">Email:</label>
+        <input type="text" id="email" /><br>
+        <label for="">Msg a ser enviada:</label>
+        <input type="text" id="message" />
+        <input type="button" value="Enviar" id="button" />
+        </body>
+
+        </html>
+
+> Nesse código você adiciona pra quem será enviado e a mensagem que será enviada.
+
+        window.onload = function() {
+
+                let button = document.getElementById("button").onclick = async function() {
+                        let email = document.getElementById("email").value;
+                        let message = document.getElementById("message").value;
+
+                        let send = fetch("http://IpLocal:3000/sendemail", {
+                                method: 'POST',
+                                headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                        emailUser: email,
+                                        messageUser: message
+                                })
+                        })
+                        let ress = await send.json();
+                        console.log(ress);
+                }
+        }
+
+> No JavaScript fazemos um fetch direcionando os parâmetros a pagina node onde será enviado o e-mail, lembrando que todos os parâmetros do e-mail podem ser alterados, no exemplo é alterado apenas o e-mail e a menssagem, mas você pode fazer algo mais complexo passando mais parâmetros.
+
+Por fim execulte o nodemon e crie um servidor local para efetuar o teste, pra isso usaremos o http-server. No diretório do projeto digite o comando:
+
+        http-server --cors
+
+abra a pagína web qeu foi gerada pelo http-server.
+
+<img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/CodeTesting2.png"></img>
+
+<img src="https://github.com/WindiestPick/send-gmail-auth2/blob/master/assets/img/CodeTesting3.png"></img>

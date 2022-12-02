@@ -18,36 +18,38 @@ app.get('/',function(req,res){
     })
 });
 
-/*
 const myOAuth2Client = new OAuth2(
-    "680829537103-822mkj8ogtt094q786bsdbfahcfbs6c5.apps.googleusercontent.com",
-    "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",
+    "Adicione o seu Client ID",
+    "Adicione o seu Client Secret",
     "https://developers.google.com/oauthplayground"
 );
 
 myOAuth2Client.setCredentials({
-    refresh_token:"1//04osFiDgxzbTECgYIARAAGAQSNwF-L9IrOeZ3Mf_BMj1TCe0UADTzXZvRTkU70n_RO5NtGBRt9MggLzXMY8I7_vbopz44xwduSr0"
+    refresh_token:"Seu Refresh Token"
 });
 
 const myAccessToken = myOAuth2Client.getAccessToken()
 
+
 const transport = nodemailer.createTransport({
     service: "gmail",
     auth: {
-         type: "OAuth2",
-         user: "gasolinaacconts@gmail.com",
-         clientId: "680829537103-822mkj8ogtt094q786bsdbfahcfbs6c5.apps.googleusercontent.com",
-         clientSecret: "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",
-         refreshToken: "1//04osFiDgxzbTECgYIARAAGAQSNwF-L9IrOeZ3Mf_BMj1TCe0UADTzXZvRTkU70n_RO5NtGBRt9MggLzXMY8I7_vbopz44xwduSr0",
-         accessToken: myAccessToken
-}});
+            type: "OAuth2",
+            user: "e-mail cadastrado no google playground",
+            clientId: "Seu Client ID",
+            clientSecret: "Seu Client Secret",
+            refreshToken: "Seu Refrash Token",
+            accessToken: myAccessToken
+    }
+});
+
 
 app.post('/sendemail',function(req,res){
     const mailOptions = {
-        from: 'gasolinaacconts@gmail.com',
-        to: req.body.email, 
-        subject: 'Sua conta do gasolina foi excluída', 
-        html: '<p>'+ req.body.message +'</p>'
+        from: 'e-mail cadastrado no google playground',
+        to: req.body.email,
+        subject: 'Titulo',
+        html: '<p> Mensagens </p>'
     }
     transport.sendMail(mailOptions,function(err,result){
         if(err){
@@ -57,13 +59,12 @@ app.post('/sendemail',function(req,res){
         }else{
             transport.close();
             res.send({
-                message:'Email has been sent: check your inbox!'
+                message:'E-mail enviado olhe sua caixa de entrada'
             })
         }
     })
-})
-*/
+});
 
 app.listen(PORT, function (req, res) {
     console.log(`Observando a porta ${PORT}`);
-})
+});
