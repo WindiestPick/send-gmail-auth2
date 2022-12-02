@@ -2,7 +2,7 @@ window.onload = function() {
 
     let button = document.getElementById("button").onclick = async function() {
         let email = document.getElementById("email").value;
-        let senha = document.getElementById("senha").value;
+        let message = document.getElementById("message").value;
 
         let send = fetch("http://192.168.4.120:3000/sendemail", {
             method: 'POST',
@@ -12,7 +12,7 @@ window.onload = function() {
             },
             body: JSON.stringify({
                 email: email,
-                message: senha
+                message: message
             })
         })
         let ress = (await send).json;
