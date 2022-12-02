@@ -4,7 +4,7 @@ window.onload = function() {
         let email = document.getElementById("email").value;
         let message = document.getElementById("message").value;
 
-        let send = fetch("http://192.168.4.120:3000/sendemail", {
+        let send = fetch("http://IpLocal:3000/sendemail", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
