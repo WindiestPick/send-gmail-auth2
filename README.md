@@ -190,7 +190,7 @@ Codigo JS:
 
         const accessToken = auth2Client.getAccessToken()
 
-> Com o Aceess Token em mãos podemos prosseguir pra proxima etapa, definir quem vai transportar o nosse e-mail, no caso o Google.
+> Com o Aceess Token em mãos podemos prosseguir pra proxima etapa, definir quem vai transportar o nosso e-mail, no caso o Google.
 
         const transport = nodemailer.createTransport({
                 service: "gmail",
